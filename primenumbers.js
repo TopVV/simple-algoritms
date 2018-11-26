@@ -1,19 +1,24 @@
-var n = prompt('N?', 0);
+function main() {
+        
+}
 
+var n = 10;
 var arr = [];
 var x = 1;
 
-outer: while (arr.length != n) {
-    for (i = (x + 1); i < (x + 2); i++) {
-        for (j = 2; j < i; j++) {
-            if (!(i % j)) {
-                x = i;
-                continue outer
-            }
-        }
-        x = i;
-        arr.push(i)
+for (var i = 1; arr.length < n; i++) {
+    if (isPrime(i)) {
+        arr.push(i);
     }
 }
 
-alert(arr[n - 1])
+console.log(arr);
+
+function isPrime(n) {
+    for (var i = 2; i < n; i++) {
+        if (!(n % i)) {
+            return false;
+        }
+    }
+    return true;
+}
