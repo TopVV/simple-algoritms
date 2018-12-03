@@ -1,0 +1,111 @@
+body {
+    background-color: aqua;
+}
+/* .xo-box {
+    width: 80%;
+    margin: 0 auto;
+    background-color: violet;
+    display: flex;
+    flex-wrap: wrap;
+}
+.xo-box__square {
+    width: 30%;
+    height: 100px;
+    border: 2px solid black;
+    position: relative;
+}
+#check-1 {
+    display: none;
+}
+label {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 2;
+    line-height: 40px;
+}
+#check-1:checked {
+    background: #000;
+} */
+table {
+    border-collapse: collapse;
+}
+tr {
+    background-color: red;
+}
+td {
+    border: 2px solid black;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+.choice__cell {
+    width: 50px;
+}
+
+.example {
+    width: 170px;
+    margin: 50px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell-example {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    border: 2px solid #fff;
+    background-color: yellow;
+}
+
+#check-1,
+#check-2,
+#check-3,
+#check-4,
+#check-5,
+#check-6,
+#check-7,
+#check-8,
+#check-9 {
+    display: none;
+}
+.example-x,
+.example-o {
+    width: 100%;
+    height: 100%;
+    font-size: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+label {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 2;
+    line-height: 40px;
+}
+
+.example-x,
+.example-o {
+    display: none;
+}
+
+#check-1:checked ~ .example-x,
+#check-2:checked ~ .example-o,
+#check-3:checked ~ .example-x,
+#check-4:checked ~ .example-o,
+#check-5:checked ~ .example-x,
+#check-6:checked ~ .example-o,
+#check-7:checked ~ .example-x,
+#check-8:checked ~ .example-o,
+#check-9:checked ~ .example-x {
+    display: block;
+}
