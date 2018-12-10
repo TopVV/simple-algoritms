@@ -1,42 +1,30 @@
-var cols = 3, rows = 3; nTurn = 0;
-
-
-function model (x, y) {
+function modelCreate (rows, cols) {
     var field = [];
-    for (var i = 0; i < x; i++) {
+    for (var y = 0; y < rows; y++) {
         field.push([]);
-        for (var j = 0; j < y; j++) {
-            field[i].push("");
+        for (var x = 0; x < cols; x++) {
+            field[y].push(" ");
         }
     }
     nTurn++;
-    return field
+    return field;
 }
 
-console.log(model(cols, rows));
-console.log(model(cols, rows));
-console.log(model(cols, rows));
-console.log(model(cols, rows));
-console.log(model(cols, rows));
-
-
-function modelRandom () {
+function modelCreateRandom (rows, cols) {
     var field = [];
-    for (var i = 0; i < cols; i++) {
+    for (var y = 0; y < rows; y++) {
         field.push([]);
-        for (var j = 0; j < rows; j++) {
-            if(Math.random()>0.5) {
-                field[i].push("X")
+        for (var x = 0; x < cols; x++) {
+            if (Math.random() > 0.5) {
+                field[y].push("X");
             } else {
-                field[i].push("O")
+                field[y].push("O");
             }
         }
     }
-    return console.table(field)
+    return field;
 }
 
-modelRandom ();
-
-console.log(nTurn)
-// счетчик ходов 
-// 
+function modelToString(model) {
+    return model.map(row => row.join(' ')).join('\n')
+}
