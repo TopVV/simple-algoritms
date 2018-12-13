@@ -18,3 +18,14 @@ function viewRender(containerElement, model, rows, cols) {
         }
     }
 }
+
+function updateModelCell(cellID){
+    // var clickID = (cellID.split('-'));
+    var changeContentTo;
+    if(nTurn%2){
+        changeContentTo = "X"
+    } else {
+        changeContentTo = "O"
+    };
+    document.getElementById(cellID).innerHTML = changeContentTo;
+}

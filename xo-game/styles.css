@@ -27,4 +27,5 @@ td {
     height: 100px;
     border: 2px solid #fff;
     font-size: 48px;
+    outline: none;
 }

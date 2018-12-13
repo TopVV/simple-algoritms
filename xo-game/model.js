@@ -28,3 +28,4 @@ function modelCreateRandom (rows, cols) {
 function modelToString(model) {
     return model.map(row => row.join(' ')).join('\n')
 }
+
