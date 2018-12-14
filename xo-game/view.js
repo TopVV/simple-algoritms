@@ -9,7 +9,7 @@ function viewCreate(containerElement, rows, cols) {
     }
 }
 
-function viewRender(containerElement, model, rows, cols) {
+function viewRender(model, rows, cols) {
     for (let y = 0; y < rows; y++) {
         for (let x = 0; x < cols; x++) {
             var id = y + '-' + x;
@@ -19,13 +19,10 @@ function viewRender(containerElement, model, rows, cols) {
     }
 }
 
-function updateModelCell(cellID){
-    // var clickID = (cellID.split('-'));
-    var changeContentTo;
-    if(nTurn%2){
-        changeContentTo = "X"
+function updateModelCell(cellID) {
+    if (nTurn % 2) {
+        document.getElementById(cellID).innerHTML = "X";
     } else {
-        changeContentTo = "O"
+        document.getElementById(cellID).innerHTML = "O";
     };
-    document.getElementById(cellID).innerHTML = changeContentTo;
 }
