@@ -29,3 +29,16 @@ function modelToString(model) {
     return model.map(row => row.join(' ')).join('\n')
 }
 
+function checkGameEnd() {
+    if((document.getElementById("0-0").innerHTML)===(document.getElementById("1-1").innerHTML)&&(document.getElementById("1-1").innerHTML)===(document.getElementById("2-2").innerHTML)) {
+        return "Game end"
+    } else if((document.getElementById("0-1").innerHTML)===(document.getElementById("1-1").innerHTML)&&(document.getElementById("1-1").innerHTML)===(document.getElementById("2-1").innerHTML)){
+        return "Game end"
+    } else if((document.getElementById("0-2").innerHTML)===(document.getElementById("1-1").innerHTML)&&(document.getElementById("1-1").innerHTML)===(document.getElementById("2-0").innerHTML)) {
+        return "Game end"
+    } else if((document.getElementById("1-0").innerHTML)===(document.getElementById("1-1").innerHTML)&&(document.getElementById("1-1").innerHTML)===(document.getElementById("1-2").innerHTML)) {
+        return "Game end"
+    } else {
+        return "Continue"
+    }
+}

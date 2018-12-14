@@ -15,6 +15,7 @@ viewRender(containerElement, model, rows, cols);
 containerElement.addEventListener('click', function (event) {
     cellID = ('click', event.target.id);
     updateModelCell(cellID);
+    console.log(checkGameEnd());
     console.log(cellID,nTurn++);   
     // todo: extract coordinated from cell ID
     // todo: update model cell
