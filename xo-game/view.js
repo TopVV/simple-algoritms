@@ -20,9 +20,9 @@ function viewRender(model, rows, cols) {
 }
 
 function updateModelCell(cellID) {
-    if (nTurn % 2) {
-        document.getElementById(cellID).innerHTML = "X";
-    } else {
-        document.getElementById(cellID).innerHTML = "O";
-    };
+    if(document.getElementById(cellID).innerHTML === " "){
+    (nTurn % 2) ? document.getElementById(cellID).innerHTML = "O" : document.getElementById(cellID).innerHTML = "X";
+    (nTurn % 2) ? document.getElementById("turn").innerHTML = "X, it's your turn" : document.getElementById("turn").innerHTML = "O, it's your turn";
+    nTurn++;
+}
 }

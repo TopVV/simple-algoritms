@@ -6,7 +6,7 @@ function modelCreate (rows, cols) {
             field[y].push(" ");
         }
     }
-    nTurn++;
+    nTurn;
     return field;
 }
 
@@ -29,17 +29,50 @@ function modelToString(model) {
     return model.map(row => row.join(' ')).join('\n')
 }
 
+function getCellByIndex(cellID) {
+    return document.getElementById(cellID).innerHTML;
+}
+
+
 function checkGameEnd() {
-    // todo: extract function getCellByIndex()
-    if ((document.getElementById("0-0").innerHTML)===(document.getElementById("1-1").innerHTML)&&(document.getElementById("1-1").innerHTML)===(document.getElementById("2-2").innerHTML)) {
-        return true;
-    } else if ((document.getElementById("0-1").innerHTML)===(document.getElementById("1-1").innerHTML)&&(document.getElementById("1-1").innerHTML)===(document.getElementById("2-1").innerHTML)){
-        return true;
-    } else if ((document.getElementById("0-2").innerHTML)===(document.getElementById("1-1").innerHTML)&&(document.getElementById("1-1").innerHTML)===(document.getElementById("2-0").innerHTML)) {
-        return true;
-    } else if ((document.getElementById("1-0").innerHTML)===(document.getElementById("1-1").innerHTML)&&(document.getElementById("1-1").innerHTML)===(document.getElementById("1-2").innerHTML)) {
-        return true;
-    } else {
-        return false;
+    if(getCellByIndex("0-0")!==" "&&getCellByIndex("0-0")===getCellByIndex("0-1")&&getCellByIndex("0-1")===getCellByIndex("0-2")&&getCellByIndex("0-2")==="X"){
+        document.getElementById('winner').innerHTML = "The winner is X"
+    } else if(getCellByIndex("1-0")!==" "&&getCellByIndex("1-0")===getCellByIndex("1-1")&&getCellByIndex("1-1")===getCellByIndex("1-2")&&getCellByIndex("1-2")==="X"){
+        return document.getElementById('winner').innerHTML = "The winner is X"
+    } else if(getCellByIndex("2-0")!==" "&&getCellByIndex("2-0")===getCellByIndex("2-1")&&getCellByIndex("2-1")===getCellByIndex("2-2")&&getCellByIndex("2-2")==="X"){
+        return document.getElementById('winner').innerHTML = "The winner is X"
+    } else if(getCellByIndex("0-0")!==" "&&getCellByIndex("0-0")===getCellByIndex("1-0")&&getCellByIndex("1-0")===getCellByIndex("2-0")&&getCellByIndex("2-0")==="X"){
+        return document.getElementById('winner').innerHTML = "The winner is X"
+    } else if(getCellByIndex("0-1")!==" "&&getCellByIndex("0-1")===getCellByIndex("1-1")&&getCellByIndex("1-1")===getCellByIndex("2-1")&&getCellByIndex("2-1")==="X"){
+        return document.getElementById('winner').innerHTML = "The winner is X"
+    } else if(getCellByIndex("0-2")!==" "&&getCellByIndex("0-2")===getCellByIndex("1-2")&&getCellByIndex("1-2")===getCellByIndex("2-2")&&getCellByIndex("2-2")==="X"){
+        return document.getElementById('winner').innerHTML = "The winner is X"
+    } else if(getCellByIndex("0-0")!==" "&&getCellByIndex("0-0")===getCellByIndex("1-1")&&getCellByIndex("1-1")===getCellByIndex("2-2")&&getCellByIndex("2-2")==="X"){
+        return document.getElementById('winner').innerHTML = "The winner is X"
+    } else if(getCellByIndex("2-0")!==" "&&getCellByIndex("2-0")===getCellByIndex("1-1")&&getCellByIndex("1-1")===getCellByIndex("0-2")&&getCellByIndex("0-2")==="X"){
+        return document.getElementById('winner').innerHTML = "The winner is X"
+    }
+    if(getCellByIndex("0-0")!==" "&&getCellByIndex("0-0")===getCellByIndex("0-1")&&getCellByIndex("0-1")===getCellByIndex("0-2")&&getCellByIndex("0-2")==="O"){
+        document.getElementById('winner').innerHTML = "The winner is O"
+    } else if(getCellByIndex("1-0")!==" "&&getCellByIndex("1-0")===getCellByIndex("1-1")&&getCellByIndex("1-1")===getCellByIndex("1-2")&&getCellByIndex("1-2")==="O"){
+        return document.getElementById('winner').innerHTML = "The winner is O"
+    } else if(getCellByIndex("2-0")!==" "&&getCellByIndex("2-0")===getCellByIndex("2-1")&&getCellByIndex("2-1")===getCellByIndex("2-2")&&getCellByIndex("2-2")==="O"){
+        return document.getElementById('winner').innerHTML = "The winner is O"
+    } else if(getCellByIndex("0-0")!==" "&&getCellByIndex("0-0")===getCellByIndex("1-0")&&getCellByIndex("1-0")===getCellByIndex("2-0")&&getCellByIndex("2-0")==="O"){
+        return document.getElementById('winner').innerHTML = "The winner is O"
+    } else if(getCellByIndex("0-1")!==" "&&getCellByIndex("0-1")===getCellByIndex("1-1")&&getCellByIndex("1-1")===getCellByIndex("2-1")&&getCellByIndex("2-1")==="O"){
+        return document.getElementById('winner').innerHTML = "The winner is O"
+    } else if(getCellByIndex("0-2")!==" "&&getCellByIndex("0-2")===getCellByIndex("1-2")&&getCellByIndex("1-2")===getCellByIndex("2-2")&&getCellByIndex("2-2")==="O"){
+        return document.getElementById('winner').innerHTML = "The winner is O"
+    } else if(getCellByIndex("0-0")!==" "&&getCellByIndex("0-0")===getCellByIndex("1-1")&&getCellByIndex("1-1")===getCellByIndex("2-2")&&getCellByIndex("2-2")==="O"){
+        return document.getElementById('winner').innerHTML = "The winner is O"
+    } else if(getCellByIndex("2-0")!==" "&&getCellByIndex("2-0")===getCellByIndex("1-1")&&getCellByIndex("1-1")===getCellByIndex("0-2")&&getCellByIndex("0-2")==="O"){
+        return document.getElementById('winner').innerHTML = "The winner is O"
+    } else if(nTurn>8){
+        document.getElementById('winner').innerHTML = "Draw"
+    }
+    else {
+        return false
     }
 }
+
