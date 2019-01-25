@@ -33,7 +33,6 @@ function getCellByIndex(cellID) {
     return document.getElementById(cellID).innerHTML;
 }
 
-
 function checkGameEnd() {
     if(getCellByIndex("0-0")!==" "&&getCellByIndex("0-0")===getCellByIndex("0-1")&&getCellByIndex("0-1")===getCellByIndex("0-2")&&getCellByIndex("0-2")==="X"){
         document.getElementById('winner').innerHTML = "The winner is X"
