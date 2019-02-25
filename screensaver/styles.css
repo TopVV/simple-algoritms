@@ -1,1 +1,12 @@
-Режим вывода команд на экран (ECHO) включен.
+.main-box {
+    width: 500px;
+    height: 500px;
+    background-color: #000;
+    position: relative;
+}
+.moving-box {
+    width: 100px;
+    height: 100px;
+    background-color: #008339;
+    position: absolute;
+}
