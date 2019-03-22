@@ -7,29 +7,16 @@ for (var i = 0; i < 5; i++) {
     addFallingBox();
 }
 
-setInterval(function () {
-    var boxes = document.querySelectorAll('.moving-box');
-    boxes.forEach(function (box) {
-        var y = parseInt(box.style.top);
-        y += speed;
- 
-        if (y > window.innerHeight) {
-            box.style.backgroundColor = '#c00';
-            document.body.removeChild(box);
-            addFallingBox();
-        } else {
-            box.style.top = toPx(y);
-        }
-    });
-}, 200);
-
-function toPx(n) {
-    return String(n) + 'px';
+function createFallingBox() {
+    var div = document.createElement('div');
+    div.className = "moving-box";
+    div.id = 'falling-box';
+    document.body.appendChild(div);
+    return div;
 }
 
 function addFallingBox() {
-    // Math.random() return value in interval [0, 1} - 1 is always EXCLUDED
-
+    
     var x = Math.random() * window.innerWidth;
     var y = -Math.random() * 100;
 
@@ -38,13 +25,8 @@ function addFallingBox() {
     box.style.top = toPx(y);
 }
 
-function createFallingBox() {
-    var div = document.createElement('div');
-    div.className = "moving-box";
-    div.id = 'falling-box-' + boxCounter;
-    document.body.appendChild(div);
-
-    return div;
+function toPx(n) {
+    return String(n) + 'px';
 }
 
 function placeFallingBox(elementId) {
@@ -54,23 +36,17 @@ function placeFallingBox(elementId) {
     startPosition += 105;
 }
 
-function intervalTimer(elementId) {
-    var timer = setInterval(function () {
-        var timePassed = Date.now() - start;
-        document.getElementById(elementId).style.top = timePassed / 5 + 'px';
-        if (timePassed > 2000) {
-            clearInterval(timer);
+setInterval(function () {
+    var boxes = document.querySelectorAll('.moving-box');
+    boxes.forEach(function (box) {
+        var y = parseInt(box.style.top);
+        y += speed;
+ 
+        if (y > window.innerHeight) {
+            document.body.removeChild(box);
+            addFallingBox();
+        } else {
+            box.style.top = toPx(y);
         }
-    }, 20);
-};
-
-
-//     var timer = setInterval(function(){
-//         moveElement('falling-box-' + BoxCounter);
-// }, 20);
-
-// function moveElement(elementId){
-//     var timePassed = Date.now() - start;
-//     if (timePassed > 2000) clearInterval(timer);
-//     document.getElementById(elementId).style.top = timePassed / 5 + 'px';
-// }
+    });
+}, 200);
