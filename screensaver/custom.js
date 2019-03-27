@@ -22,8 +22,9 @@ function createFallingBox() {
 
 function addFallingBox() {
     
-    var x = Math.round(Math.random() * countColumns()) * symbolWidth;
-    var y = -Math.random() * 100;
+    var x = Math.round(Math.random() * calculateColumns()) * symbolWidth;
+    // var y = -Math.random() * 100;
+    var y = -Math.round(Math.random() * calculateColumns()) * symbolWidth
 
     var box = createFallingBox();
     box.style.left = toPx(x);
@@ -82,9 +83,14 @@ function generateRandomSymbol() {
 
     // setBoxHeight();
 
-function countColumns(){
-    var columnsAmount = Math.round(window.innerWidth/30);
+function calculateColumns(){
+    var columnsAmount = Math.round(window.innerWidth/symbolWidth);
     return columnsAmount;
 }
 
-console.log(countColumns());
+function calculateRows(){
+    var rowsAmount = Math.round(window.window.innerHeight/symbolHeight);
+    return rowsAmount;
+}
+
+console.log(calculateRows());
