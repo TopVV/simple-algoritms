@@ -2,8 +2,10 @@ var start = Date.now();
 var boxCounter = 0;
 var startPosition = 5;
 var speed = 10;
+var symbolWidth = 30;
+var symbolHeight = 30;
 
-for (var i = 0; i < 15; i++) {
+for (var i = 0; i < 115; i++) {
     addFallingBox();
 }
 
@@ -12,15 +14,15 @@ function createFallingBox() {
     div.className = "moving-box";
     div.id = 'falling-box'; // id можем не задавать, мне кажется
     document.body.appendChild(div);
-    div.style.width = "30px";
-    div.style.height = "30px";
+    div.style.width = toPx(symbolWidth);
+    div.style.height = toPx(symbolHeight);
     div.innerHTML = generateRandomSymbol();
     return div;
 }
 
 function addFallingBox() {
     
-    var x = Math.random() * window.innerWidth;
+    var x = Math.round(Math.random() * countColumns()) * symbolWidth;
     var y = -Math.random() * 100;
 
     var box = createFallingBox();
@@ -67,8 +69,6 @@ function generateRandomSymbol() {
   
     return text;
   }
-  
-  console.log(generateRandomSymbol());
 
 // function setBoxHeight(box) {
 //         var boxHeight = window.innerHeight;
@@ -81,3 +81,10 @@ function generateRandomSymbol() {
 // }
 
     // setBoxHeight();
+
+function countColumns(){
+    var columnsAmount = Math.round(window.innerWidth/30);
+    return columnsAmount;
+}
+
+console.log(countColumns());
