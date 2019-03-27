@@ -2,10 +2,10 @@ var start = Date.now();
 var boxCounter = 0;
 var startPosition = 5;
 var speed = 10;
-var symbolWidth = 30;
+var symbolWidth = 27;
 var symbolHeight = 30;
 
-for (var i = 0; i < 115; i++) {
+for (var i = 0; i < 15; i++) {
     addFallingBox();
 }
 
@@ -15,8 +15,8 @@ function createFallingBox() {
     div.id = 'falling-box'; // id можем не задавать, мне кажется
     document.body.appendChild(div);
     div.style.width = toPx(symbolWidth);
-    div.style.height = toPx(symbolHeight);
-    div.innerHTML = generateRandomSymbol();
+    div.style.height = toPx(calculateRowsHeight());
+    div.innerHTML = generateRandomRow(calculateSymbolsNumber());
     return div;
 }
 
@@ -48,7 +48,7 @@ setInterval(function () {
         var y = parseInt(box.style.top);
         y += speed;
  
-        if (y > window.innerHeight/2) {
+        if (y > window.innerHeight) {
             box.remove();
             addFallingBox();
         } else {
@@ -61,7 +61,7 @@ setInterval(function () {
 
 function generateRandomSymbol() {
     var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // позже можно расширить
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン"; // позже можно расширить
     // var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     
     text += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -70,6 +70,14 @@ function generateRandomSymbol() {
   
     return text;
   }
+
+function generateRandomRow(sybolsNumber){
+    var symbols = "";
+    for (var i = 0; i < sybolsNumber; i++){
+        symbols += generateRandomSymbol() + " ";
+    }
+    return symbols
+}
 
 // function setBoxHeight(box) {
 //         var boxHeight = window.innerHeight;
@@ -84,13 +92,16 @@ function generateRandomSymbol() {
     // setBoxHeight();
 
 function calculateColumns(){
-    var columnsAmount = Math.round(window.innerWidth/symbolWidth);
-    return columnsAmount;
+    var columnsNmount = Math.round(window.innerWidth/symbolWidth);
+    return columnsNmount;
 }
 
-function calculateRows(){
-    var rowsAmount = Math.round(window.window.innerHeight/symbolHeight);
-    return rowsAmount;
+function calculateRowsHeight() {
+    return window.innerHeight;
 }
 
-console.log(calculateRows());
+function calculateSymbolsNumber() {
+    return Math.round(calculateRowsHeight()/symbolHeight);
+}
+
+console.log(generateRandomRow(calculateSymbolsNumber()));

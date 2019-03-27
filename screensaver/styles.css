@@ -7,13 +7,15 @@ body {
 .moving-box {
     position: absolute;
     font-size: 30px;
-    /* background-color: red; */
+    background-color: red;
     color: #00d300;
+    text-align: center;
+    line-height: 30px;
 }
 
 /* .test {
     color: green;
     font-size: 30px;
-    width: 30px;
+    width: 27px;
     height: 30px;
 } */
