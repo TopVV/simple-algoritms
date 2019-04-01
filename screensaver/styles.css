@@ -2,12 +2,12 @@ body {
     margin: 0;
     background: black;
     overflow: hidden;
+    font: 30px normal monospace;
 }
 
 .moving-box {
     position: absolute;
-    font-size: 30px;
-    background-color: red;
+    background-color: rgba(0, 255, 0, 0.15);
     color: #00d300;
     text-align: center;
     line-height: 30px;
