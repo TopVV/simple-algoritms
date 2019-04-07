@@ -8,3 +8,5 @@ var characterMap = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789アカサタナハマヤ
 
 var minCharNumber = 5;
 var maxCharNumber = 15;
+
+var occupiedColumns= [];

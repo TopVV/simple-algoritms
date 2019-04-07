@@ -1,12 +1,12 @@
 function addFallingBox() {
     var box = createFallingBox();
-    var x =  Math.round(Math.random() * calculateColumns()) * symbolWidth;
+    var x =  chooseRandomColumn() * symbolWidth;
     var y = -box.clientHeight - Math.random() * box.clientHeight;
     // console.log(x, y);
 
     box.opacity = 1;
     box.column = x / symbolWidth; // проверь что правильно
-    // console.log(box.column);
+    occupiedColumns.push(box.column);
 
     // индекс колонок текущих боксов
     // [].slice.call(document.querySelectorAll('.moving-box')).map(x => x.column)
@@ -42,3 +42,17 @@ function calculateRowsHeight() {
 function calculateSymbolsNumber() {
     return Math.round(calculateRowsHeight()/symbolHeight);
 }
+
+function chooseRandomColumn(){
+    var randomColumn = Math.round(Math.random() * (calculateColumns()-1));
+    console.log(randomColumn);
+    occupiedColumns.forEach(function(item, i, arr) {
+        if(item == randomColumn){
+            return randomColumn++;
+        };
+      });
+      console.log(randomColumn);
+    return randomColumn;
+}
+
+console.log(occupiedColumns);

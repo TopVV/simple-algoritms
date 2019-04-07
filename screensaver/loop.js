@@ -1,4 +1,4 @@
-for (var i = 0; i < 15; i++) {
+for (var i = 0; i < 40; i++) {
     addFallingBox();
 }
 
@@ -12,6 +12,11 @@ function loop() {
 
         if (y > window.innerHeight) {
             box.remove();
+            occupiedColumns.forEach(function(item, i, arr) {
+                if(item == box.column){
+                    delete arr[i]
+                }
+            });
             addFallingBox();
         } else {
             box.style.top = toPx(y);
