@@ -47,13 +47,13 @@ function calculateSymbolsNumber() {
 function chooseRandomColumn() {
     var nColumns = getColumnsNumber();
 
-    for (var i = 0; i < nColumns; i++) {
+    for (var i = 0; i < 1000; i++) {
         var randomColumn = Math.floor(Math.random() * nColumns);
         if (!occupiedColumns.includes(randomColumn)) {
-            occupiedColumns.push(randomColumn);
             return randomColumn;
         }
     }
-
+    
+    // throw new Error(`No free columns left (of ${nColumns})!`);
     return -1;
 }
