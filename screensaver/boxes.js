@@ -1,11 +1,12 @@
 function addFallingBox() {
     var box = createFallingBox();
-    var x =  chooseRandomColumn() * symbolWidth;
+    var column = chooseRandomColumn();
+    var x =  column * symbolWidth;
     var y = -box.clientHeight - Math.random() * box.clientHeight;
     // console.log(x, y);
 
     box.opacity = 1;
-    box.column = x / symbolWidth; // проверь что правильно
+    box.column = column;
     occupiedColumns.push(box.column);
 
     // индекс колонок текущих боксов
@@ -31,7 +32,7 @@ function toPx(n) {
     return String(n) + 'px';
 }
 
-function calculateColumns() {
+function getColumnsNumber() {
     return Math.round(window.innerWidth / symbolWidth);
 }
 
@@ -43,16 +44,16 @@ function calculateSymbolsNumber() {
     return Math.round(calculateRowsHeight()/symbolHeight);
 }
 
-function chooseRandomColumn(){
-    var randomColumn = Math.round(Math.random() * (calculateColumns()-1));
-    console.log(randomColumn);
-    occupiedColumns.forEach(function(item, i, arr) {
-        if(item == randomColumn){
-            return randomColumn++;
-        };
-      });
-      console.log(randomColumn);
-    return randomColumn;
-}
+function chooseRandomColumn() {
+    var nColumns = getColumnsNumber();
 
-console.log(occupiedColumns);
+    for (var i = 0; i < nColumns; i++) {
+        var randomColumn = Math.floor(Math.random() * nColumns);
+        if (!occupiedColumns.includes(randomColumn)) {
+            occupiedColumns.push(randomColumn);
+            return randomColumn;
+        }
+    }
+
+    return -1;
+}
