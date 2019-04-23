@@ -10,3 +10,4 @@ var minCharNumber = 5;
 var maxCharNumber = 15;
 
 var occupiedColumns = [];
+var unoccupiedColumns = [];

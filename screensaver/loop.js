@@ -1,9 +1,9 @@
-var nColumns = getColumnsNumber();
+// var nColumns = getColumnsNumber()/2; ---------------- added /2 and moved to the boxes.js
 for (var i = 0; i < nColumns; i++) {
     addFallingBox();
 }
 
-setInterval(loop, 20);
+setInterval(loop, 150); // interval was 20
 
 function loop() {
     var boxes = document.querySelectorAll('.moving-box');

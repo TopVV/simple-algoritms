@@ -16,6 +16,8 @@ function addFallingBox() {
     box.style.top = toPx(y);
 }
 
+var nColumns = Math.round(getColumnsNumber()/2);
+
 function createFallingBox() {
     var box = document.createElement('div');
     box.className = "moving-box";
@@ -44,16 +46,43 @@ function calculateSymbolsNumber() {
     return Math.round(calculateRowsHeight()/symbolHeight);
 }
 
-function chooseRandomColumn() {
-    var nColumns = getColumnsNumber();
-
-    for (var i = 0; i < 1000; i++) {
-        var randomColumn = Math.floor(Math.random() * nColumns);
-        if (!occupiedColumns.includes(randomColumn)) {
-            return randomColumn;
+function findAllFreeColumns(){
+    for (var i = 0; i < nColumns; i++) {
+        if (occupiedColumns.includes(i)) {
+            continue
+        } else {
+            unoccupiedColumns.push(i)
         }
     }
-    
-    // throw new Error(`No free columns left (of ${nColumns})!`);
-    return -1;
 }
+function chooseRandomColumn(){
+
+    findAllFreeColumns();
+    
+    unoccupiedColumns.sort(function(a,b){
+        return a-b
+    });
+
+    randomColumnNumber = Math.floor(Math.random() * (unoccupiedColumns[unoccupiedColumns.length-1] - unoccupiedColumns[0])) + unoccupiedColumns[0];
+
+    unoccupiedColumns.length = 0
+
+    return randomColumnNumber;
+}
+
+
+
+// ------------- OLD SCRIPT -------------
+// function chooseRandomColumn() {
+//     var nColumns = getColumnsNumber();
+
+//     for (var i = 0; i < 1000; i++) {
+//         var randomColumn = Math.floor(Math.random() * nColumns);
+//         if (!occupiedColumns.includes(randomColumn)) {
+//             return randomColumn;
+//         }
+//     }
+    
+//     // throw new Error(`No free columns left (of ${nColumns})!`);
+//     return -1;
+// }
