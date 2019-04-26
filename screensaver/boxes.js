@@ -16,7 +16,7 @@ function addFallingBox() {
     box.style.top = toPx(y);
 }
 
-var nColumns = Math.round(getColumnsNumber()/2);
+var nColumns = Math.round(getColumnsNumber());
 
 function createFallingBox() {
     var box = document.createElement('div');
@@ -63,7 +63,8 @@ function chooseRandomColumn(){
         return a-b
     });
 
-    randomColumnNumber = Math.floor(Math.random() * (unoccupiedColumns[unoccupiedColumns.length-1] - unoccupiedColumns[0])) + unoccupiedColumns[0];
+    randomColumnNumber = unoccupiedColumns[Math.floor(Math.random() * (unoccupiedColumns.length ))];
+
 
     unoccupiedColumns.length = 0
 
