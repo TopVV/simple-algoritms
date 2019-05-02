@@ -24,10 +24,18 @@ function createFallingBox() {
     box.opacity = 0;
     box.style.width = toPx(symbolWidth);
     box.innerHTML = generateRandomRow(minCharNumber, maxCharNumber);
-
     document.body.appendChild(box);
 
+    var firstLetter = document.createElement("div");
+    firstLetter.className = "firstLetter"
+    firstLetter.innerHTML = generateRandomSymbol();
+    box.appendChild(firstLetter);
+
     return box;
+}
+
+function addFirstCharacter(){
+
 }
 
 function toPx(n) {

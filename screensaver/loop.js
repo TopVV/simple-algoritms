@@ -1,5 +1,5 @@
 // var nColumns = getColumnsNumber()/2; ---------------- added /2 and moved to the boxes.js
-for (var i = 0; i < nColumns; i++) {
+for (var i = 0; i < nColumns/2; i++) {
     addFallingBox();
 }
 

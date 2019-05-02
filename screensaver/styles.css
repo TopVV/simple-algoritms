@@ -11,7 +11,17 @@ body {
     color: #00d300;
     text-align: center;
     line-height: 30px;
+    font-weight: bold;
+    /* transform: rotate(180deg); */
 }
+
+.firstLetter {
+    color: #fff;
+}
+
+/* .moving-box:first-letter {
+    color: red;
+} */
 
 /* .test {
     color: green;
