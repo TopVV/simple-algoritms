@@ -7,7 +7,7 @@ var symbolHeight = 30;
 var characterMap = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン";
 
 var minCharNumber = Math.floor(window.innerHeight/30);
-var maxCharNumber = 15;
+var maxCharNumber = 15 + minCharNumber;
 
 var occupiedColumns = [];
 var unoccupiedColumns = [];

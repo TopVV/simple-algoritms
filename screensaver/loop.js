@@ -3,7 +3,7 @@ for (var i = 0; i < nColumns/2; i++) {
     addFallingBox();
 }
 
-setInterval(loop, 150); // interval was 20
+setInterval(loop, 120); // interval was 20
 
 function loop() {
     var boxes = document.querySelectorAll('.moving-box');
