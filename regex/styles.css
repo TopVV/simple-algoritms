@@ -1,0 +1,22 @@
+body {
+    margin: 40px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 8px;
+}
+
+label span {
+    display: inline-block;
+    width: 100px;
+}
+
+button[type=submit] {
+
+}
+
