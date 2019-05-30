@@ -10,7 +10,17 @@ form.addEventListener('submit', (event) => {
 
 function addNewTodo(todoText){
     let todoItem = document.createElement("li");
+    let todoToggle = document.createElement("div");
+    let todoInner = document.createElement("div");
+    let todoCircle = document.createElement("i");
     todoItem.className = 'todo-list__item';
-    todoItem.innerHTML = todoText;
+    todoToggle.className = 'todo-list-toggle';
+    todoInner.className = 'todo-text';
+    todoCircle.className = 'far fa-circle';
+    todoInner.innerHTML = todoText;
+    todoItem.appendChild(todoToggle);
+    todoToggle.appendChild(todoCircle);
+    todoItem.appendChild(todoInner);
     document.querySelector(".todo-list").appendChild(todoItem);
+    
 }
