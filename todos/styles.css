@@ -71,8 +71,13 @@ header {
     line-height: 1.2;
     transition: color 0.4s;
 }
-.todo-list-toggle {
+.todo-list__toggle {
     position: absolute;
     top: 15.5px;
     left: 25px;
+}
+.todo-list__delete {
+    position: absolute;
+    top: 15px;
+    right: 20px;
 }
