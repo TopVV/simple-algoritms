@@ -3,16 +3,18 @@ let todoCounter = 0; //можно написать функцию, чтобы и
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
+
     let newTodo = document.getElementById('todoInput').value;
     console.log(newTodo);
-    addNewTodo(newTodo);
+
+    // addNewTodo(newTodo);
+    addNewTodo2(newTodo);
+
     document.getElementById('todoInput').value = '';
     addClickListner();
 });
 
-
-
-function addNewTodo(todoText){
+function addNewTodo(todoText) {
     let todoItem = document.createElement("li");
     let todoToggle = document.createElement("div");
     let todoDelete = document.createElement("div");
@@ -39,18 +41,36 @@ function addNewTodo(todoText){
     todoCounter++;
 }
 
-function check(number){
-    document.getElementById('text'+number).onclick=function(){
-        style.textDecoration = "line-through"
+function addNewTodo2(todoText) {
+    var todoItemTemplate = `
+        <li class="todo-list__item" id="item${todoCounter}">
+            <div class="todo-list__toggle" id="toggle${todoCounter}">
+                <i class="far fa-circle"></i>
+            </div>
+            <div class="todo-list__delete" id="delete${todoCounter}">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="todo-text" id="text${todoCounter}">${todoText}</div>
+        </li>`;
+    
+    var todoList = document.querySelector(".todo-list");
+    todoList.innerHTML += todoItemTemplate;
+
+    todoCounter++;
+}
+
+function addClickListner() {
+    let todoItemToggleList = document.getElementsByClassName('todo-list__toggle');
+    for (let i = 0; i < todoItemToggleList.length; i++) {
+        todoItemToggleList[i].addEventListener("click", check(i));
     }
-};
+}
 
-
-function addClickListner(){
-    let arr = document.getElementsByClassName('todo-list__toggle');
-    for (let i = 0; i < arr.length; i++) {
-        arr[i].addEventListener("click", check(i));
-     }
+function check(number) {
+    return () => {
+        console.log('click', number);
+        document.getElementById('text' + number).style.textDecoration = "line-through";
+    };
 }
 
 console.log(document.getElementsByClassName('todo-list__toggle'));
