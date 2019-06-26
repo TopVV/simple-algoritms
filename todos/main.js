@@ -66,38 +66,73 @@ function addClickListner() {
     let todoItemToggleList = document.getElementsByClassName('todo-list__toggle');
     let todoItemDeleteList = document.getElementsByClassName('todo-list__delete');
     for (let i = 0; i < todoItemToggleList.length; i++) {
-        todoItemToggleList[i].addEventListener("click", checkTodo(+(todoItemToggleList[i].id.match(/\d+/)[0])));
-        todoItemDeleteList[i].addEventListener("click", deleteTodo(+(todoItemDeleteList[i].id.match(/\d+/)[0])));
+        todoItemToggleList[i].addEventListener("click", todoClick(getNumber(todoItemToggleList[i])));
+        todoItemDeleteList[i].addEventListener("click", deleteTodo(getNumber(todoItemDeleteList[i])))
     }
 };
 
-function checkTodo(number) {
-    return () => {
-        function toCheck(n) {
-            document.getElementById('text' + n).style.textDecoration = "line-through";
-            modifyToggle('far fa-check-circle', n);
-            document.getElementById('toggle' + n).classList.add('checked');
-        };
-        function toUncheck(n) {
-            document.getElementById('text' + n).removeAttribute("style");
-            modifyToggle("far fa-circle", n);
-            document.getElementById('toggle' + n).classList.remove('checked');
-        };
-        function modifyToggle(className, n){
-            document.getElementById('toggle' + n).innerHTML = '';
-            let todoModified = document.createElement("i");
-            todoModified.className = className;
-            document.getElementById('toggle' + n).appendChild(todoModified);
-        };
+function getNumber(arrayElement){
+    return +(arrayElement.id.match(/\d+/)[0])
+}
 
-        if(document.getElementById('toggle' + number).classList.contains('checked')){
-            toUncheck(number);
+document.getElementById('toggleAll').addEventListener("click", toggleAllTodo());
+
+function toggleAllTodo(){
+    return () => {
+    let allTodosToggle = document.getElementsByClassName('todo-list__toggle');
+    let checkedTodoIds = [];
+    let unchekedTodoIds = [];
+    for(let i = 0; i < allTodosToggle.length; i++){
+        if(allTodosToggle[i].classList.contains('checked')){
+            checkedTodoIds.push(getNumber(allTodosToggle[i]))
+        } else {
+            unchekedTodoIds.push(getNumber(allTodosToggle[i]))
+        }
+    };
+    if(checkedTodoIds.length == allTodosToggle.length){
+        checkedTodoIds.forEach(function(element) {
+            toUncheck(element);
+          });
+    } else {
+        unchekedTodoIds.forEach(function(element) {
+            toCheck(element);
+          });
+    }
+}};
+
+function todoClick(number) {
+    return () => {
+        if(checkedClassContains('toggle' + number)){
+            toUncheck(number)
         } else {
             toCheck(number)
         };
 
     };
 };
+
+function toCheck(n) {
+    document.getElementById('text' + n).style.textDecoration = "line-through";
+    modifyToggle('far fa-check-circle', n);
+    document.getElementById('toggle' + n).classList.add('checked');
+};
+
+function toUncheck(n) {
+    document.getElementById('text' + n).removeAttribute("style");
+    modifyToggle("far fa-circle", n);
+    document.getElementById('toggle' + n).classList.remove('checked');
+};
+
+function modifyToggle(className, n){
+    document.getElementById('toggle' + n).innerHTML = '';
+    let todoModified = document.createElement("i");
+    todoModified.className = className;
+    document.getElementById('toggle' + n).appendChild(todoModified);
+};
+
+function checkedClassContains(itemId){
+    return document.getElementById(itemId).classList.contains('checked')
+}
 
 function deleteTodo(number){
     return () => {
