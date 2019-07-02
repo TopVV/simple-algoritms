@@ -1,12 +1,21 @@
 let form = document.querySelector('form');
-let todoCounter = 0; //можно написать функцию, чтобы искало следущий свободный
+let todoCounter = 0;
+document.getElementById('toggleAll').addEventListener("click", toggleAllTodo());
+
+(function (){
+	if(localStorage.length > 0) {
+	document.querySelector(".todo-list").innerHTML = JSON.parse(localStorage.getItem('allTodos'));
+	todoCounter = getNumber(document.getElementsByClassName("todo-list__item")[document.getElementsByClassName("todo-list__item").length-1]);
+	addClickListener();
+}
+})();
 
 form.addEventListener('submit', (event) => {
 	event.preventDefault();
 
 	let newTodo = document.getElementById('todoInput').value;
 
-	if (newTodo == 0) {
+	if (newTodo === "") {
 		return;
 	}
 
@@ -16,7 +25,6 @@ form.addEventListener('submit', (event) => {
 	addClickListener();
 });
 
-document.getElementById('toggleAll').addEventListener("click", toggleAllTodo());
 
 function addNewTodo(todoText) {
 	var todoItemTemplate = `
@@ -32,21 +40,28 @@ function addNewTodo(todoText) {
 
 	var todoList = document.querySelector(".todo-list");
 	todoList.innerHTML += todoItemTemplate;
+	localStorage.setItem('todo' + todoCounter, todoText)
 
+	saveTodos();
 	todoCounter++;
 }
 
-function addClickListener() {
-	let todoItemToggleList = document.getElementsByClassName('todo-list__toggle');
-	let todoItemDeleteList = document.getElementsByClassName('todo-list__delete');
-	for (let i = 0; i < todoItemToggleList.length; i++) {
-		todoItemToggleList[i].addEventListener("click", todoClick(getNumber(todoItemToggleList[i])));
-		todoItemDeleteList[i].addEventListener("click", deleteTodo(getNumber(todoItemDeleteList[i])))
-	}
+function todoClick(number) {
+	return () => {
+		if (checkedClassContains('toggle' + number)) {
+			toUncheck(number)
+		} else {
+			toCheck(number)
+		};
+		saveTodos();
+	};
 }
 
-function getNumber(arrayElement) {
-	return +(arrayElement.id.match(/\d+/)[0])
+function deleteTodo(number) {
+	return () => {
+		document.getElementById('item' + number).remove();
+		saveTodos();
+	}
 }
 
 function toggleAllTodo() {
@@ -60,7 +75,7 @@ function toggleAllTodo() {
 			} else {
 				uncheckedTodoIds.push(getNumber(allTodosToggle[i]))
 			}
-		}
+		};
 		if (checkedTodoIds.length === allTodosToggle.length) {
 			checkedTodoIds.forEach(function (element) {
 				toUncheck(element);
@@ -69,18 +84,18 @@ function toggleAllTodo() {
 			uncheckedTodoIds.forEach(function (element) {
 				toCheck(element);
 			});
-		}
+		};
+		saveTodos();
 	}
 }
 
-function todoClick(number) {
-	return () => {
-		if (checkedClassContains('toggle' + number)) {
-			toUncheck(number)
-		} else {
-			toCheck(number)
-		}
-	};
+function addClickListener() {
+	let todoItemToggleList = document.getElementsByClassName('todo-list__toggle');
+	let todoItemDeleteList = document.getElementsByClassName('todo-list__delete');
+	for (let i = 0; i < todoItemToggleList.length; i++) {
+		todoItemToggleList[i].addEventListener("click", todoClick(getNumber(todoItemToggleList[i])));
+		todoItemDeleteList[i].addEventListener("click", deleteTodo(getNumber(todoItemDeleteList[i])))
+	}
 }
 
 function toCheck(n) {
@@ -95,6 +110,11 @@ function toUncheck(n) {
 	document.getElementById('toggle' + n).classList.remove('checked');
 }
 
+function saveTodos(){
+	localStorage.clear();
+	localStorage.setItem('allTodos', JSON.stringify(document.querySelector(".todo-list").innerHTML))
+}
+
 function modifyToggle(className, n) {
 	document.getElementById('toggle' + n).innerHTML = '';
 	let todoModified = document.createElement("i");
@@ -106,8 +126,8 @@ function checkedClassContains(itemId) {
 	return document.getElementById(itemId).classList.contains('checked')
 }
 
-function deleteTodo(number) {
-	return () => {
-		document.getElementById('item' + number).remove()
-	}
+function getNumber(arrayElement) {
+	if(arrayElement != undefined){
+	return +(arrayElement.id.match(/\d+/)[0])
+}
 }
