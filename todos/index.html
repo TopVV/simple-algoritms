@@ -13,7 +13,9 @@
         <h1>todos</h1>
         <header class="header">
             <form action="#" method="GET" enctype="application/x-www-form-urlencoded">
-                <input type="text" class="new-todo" id="todoInput" placeholder="What needs to be done?">
+                <input type="text" class="new-todo" id="todoInput"
+                       placeholder="What needs to be done?"
+                       autocomplete="off">
                 <i class="toggle-all fas fa-chevron-down" id="toggleAll"></i>
             </form>
         </header>
@@ -26,8 +28,8 @@
     </div>
 
     <script src="model.js"></script>
-    <script src="view.js"></script>
     <script src="controller.js"></script>
+    <script src="view.js"></script>
     <!-- <script src="main(not-in-use).js"></script> -->
 
 </body>

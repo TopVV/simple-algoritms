@@ -1,15 +1,6 @@
-document.querySelector('form').addEventListener('submit', (event) => {
-    event.preventDefault();
-    let TodoText = document.getElementById('todoInput').value;
-    document.getElementById('todoInput').value = "";
-    if (TodoText) {
-        todoListArr.push(new newTodo(TodoText));
-        writeTodoList(todoListArr);
-    }
-});
-
 function toggleChange(todoNumber) {
-    todoListArr[todoNumber]['toggle'] = todoListArr[todoNumber]['toggle'] ? false : true;
+    var todoItem = todoListArr[todoNumber];
+    todoItem.toggle = !todoItem.toggle;
     writeTodoList(todoListArr);
 }
 
@@ -18,23 +9,31 @@ function deleteTodo(todoNumber) {
     writeTodoList(todoListArr);
 }
 
-// function toggleAll() {
-//     let checkedArr = [];
-//     let uncheckedArr = [];
-//     for (let i = 0; i < todoListArr.length; i++) {
-//         todoListArr[i]['toggle'] ? checkedArr.push(todoListArr[i]) : uncheckedArr.push(todoListArr[i]);
-//     };
-//     if (!(uncheckedArr.length)) {
-//         checkedArr.forEach(element => {
-//             element['toggle'] = false
-//         })
-//     } else {
-//         uncheckedArr.forEach(element => {
-//             element['toggle'] = true
-//         })
-//     }
-// }
+function toggleAll() {
+    let checkedArr = [];
+    let uncheckedArr = [];
 
+    for (let i = 0; i < todoListArr.length; i++) {
+        var todoItem = todoListArr[i];
+        if (todoItem.toggle) {
+            checkedArr.push(todoItem);
+        } else {
+            uncheckedArr.push(todoItem)
+        }
+    }
+
+    if (!uncheckedArr.length) {
+        checkedArr.forEach(element => {
+            element.toggle = false;
+        });
+    } else {
+        uncheckedArr.forEach(element => {
+            element.toggle = true;
+        });
+    }
+
+    writeTodoList();
+}
 
 // function deleteAllTodo() {
 //     todoListArr.length = 0;
