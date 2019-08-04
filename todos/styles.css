@@ -81,3 +81,20 @@ header {
     top: 15px;
     right: 20px;
 }
+footer {
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    justify-content: center;
+}
+.choseTodos {
+    margin: 5px 20px;
+    padding: 5px;
+    hover: 
+}
+.choseTodos:hover {
+    cursor: pointer;
+}
+.selected {
+    border: 2px solid rgba(175, 47, 47, 0.2);
+}
