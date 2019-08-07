@@ -9,7 +9,6 @@ function deleteTodo(todoNumber) {
     writeTodoList(todoListArr);
 }
 
-
 function toggleAll() {
     getCheckedUncheckedInArrs();
 
@@ -33,7 +32,7 @@ function getCheckedUncheckedInArrs() {
         if (todoItem.toggle) {
             checkedArr.push(todoItem);
         } else {
-            uncheckedArr.push(todoItem)
+            uncheckedArr.push(todoItem);
         }
     }
 }

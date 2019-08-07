@@ -15,31 +15,34 @@ document.querySelector('form').addEventListener('submit', (event) => {
     }
 });
 
+///////////////////////////////////////////////////////////
+
 function writeTodoList(arr) {
+    console.log('writeTodoList()');
+
     var list = document.querySelector(".todo-list");
     list.innerHTML = '';
 
     for (var i = 0; i < arr.length; i++) {
         if (arr[i]['hidden']) {
-            continue
+            continue;
         }
+
+        var lineThrough = arr[i]['toggle'] ? 'style="text-decoration: line-through"' : '';
         var toggleCssClass = arr[i]['toggle'] ? ('fa-check-circle') : ('fa-circle');
-        var lineThrough = '';
-        if (arr[i]['toggle']) {
-            lineThrough = 'style="text-decoration: line-through"'
-        }
         var todoItemTemplate = `
-        <li class="todo-list__item">
-                <i class="todo-list__toggle far ${toggleCssClass}"></i>
-                <i class="todo-list__delete fas fa-times"></i>
-            <div class="todo-text" ${lineThrough}>${arr[i]['text']}</div>
-        </li>`;
+            <li class="todo-list__item">
+                    <i class="todo-list__toggle far ${toggleCssClass}"></i>
+                    <i class="todo-list__delete fas fa-times"></i>
+                <div class="todo-text" ${lineThrough}>${arr[i]['text']}</div>
+            </li>`;
         list.innerHTML += todoItemTemplate;
     };
 
+    var todoItems = document.querySelectorAll('.choseTodos');
     for (var i = 0; i < showTodoBySection.length; i++) {
         if (showTodoBySection[i]) {
-            document.querySelectorAll('.choseTodos')[i].classList.add('selected')
+            todoItems[i].classList.add('selected');
         }
     }
 
@@ -54,6 +57,8 @@ function writeTodoList(arr) {
 }
 
 function addAllEventListeners() {
+    console.log('addAllEventListeners()');
+
     var toggleArr = Array.from(document.querySelectorAll(".todo-list__toggle"));
     var deleteArr = Array.from(document.querySelectorAll(".todo-list__delete"));
     var toggleAllElement = document.getElementById('toggleAll');
@@ -71,11 +76,10 @@ function addAllEventListeners() {
         });
     });
 
-
-
+    toggleAllElement.removeEventListener('click', toggleArr);
     toggleAllElement.addEventListener('click', toggleAll);
-
-
+    
+    // unbind previous listener
     allActiveCompletedButtons[0].addEventListener('click', () => { showAll(); addSelectedClass(0) });
     allActiveCompletedButtons[1].addEventListener('click', () => { showActive(); addSelectedClass(1) });
     allActiveCompletedButtons[2].addEventListener('click', () => { showCompleted(); addSelectedClass(2) });
