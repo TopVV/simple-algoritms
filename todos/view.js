@@ -73,8 +73,8 @@ function addAllEventListeners() {
     deleteArr.forEach(function (element) {
         element.addEventListener('click', event => {
             deleteTodo(deleteArr.indexOf(event.target));
-        });
     });
+        });
 
     toggleAllElement.removeEventListener('click', toggleArr);
     toggleAllElement.addEventListener('click', toggleAll);
