@@ -1,6 +1,6 @@
 'use strict';
 
-class Point {
+/* class Point {
 
     constructor(x, y) {
         this.x = x;
@@ -51,3 +51,4 @@ console.log(pointB);
 
 console.log('-'.repeat(20));
 console.log(pointA.__proto__.move);
+ */

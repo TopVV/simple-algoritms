@@ -1,0 +1,12 @@
+.cell--dead,
+.cell--alive,
+.world td {
+    width: 25px;
+    height: 25px;
+    border: 2px solid black; 
+}
+
+.cell--alive {
+    background-color: red;
+}
+
