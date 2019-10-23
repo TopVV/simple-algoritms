@@ -1,6 +1,6 @@
 createCircle();
 // expandCircle(document.getElementById('circle'), 100, addText);
-expandCirclePromise(document.getElementById('circle'), 2).then(addText); // time указывается в секундах 
+expandCirclePromise(document.getElementById('circle'), 5).then(addText); // time указывается в секундах 
 
 
 // ----------------------------------- НОВЫЙ ЧЕРЕЗ Promise --------------------------------------------
