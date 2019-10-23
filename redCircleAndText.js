@@ -1,24 +1,30 @@
 createCircle();
 // expandCircle(document.getElementById('circle'), 100, addText);
-expandCirclePromise(document.getElementById('circle'), 100).then(addText);
+expandCirclePromise(document.getElementById('circle'), 2).then(addText); // time указывается в секундах 
 
 
 // ----------------------------------- НОВЫЙ ЧЕРЕЗ Promise --------------------------------------------
 
 function expandCirclePromise(domElement, time) {
-  return new Promise(function (resolve) {
+  let radius = 200;
+  let pxStep = 5;
+  time = time * 1000 / (radius / pxStep);
+  return new Promise(function(resolve) {
     // тут resolve - это тот же callback, только завернутый в "коробку"
-    setTimeout(function expand(){
-    let currentWidthNumber = Number(domElement.style.width.slice(0, -2));
-    if (currentWidthNumber >= 200) {
-      resolve(domElement);
-      return
-    }
-    domElement.style.width = currentWidthNumber + 5 + 'px';
-    domElement.style.height = currentWidthNumber + 5 + 'px';
-    domElement.style.borderRadius = currentWidthNumber + 5 + 'px';
-    setTimeout(expand, time)
-  }, time)
+    //  let stepPx = radius / time / 1000;
+    setTimeout(function expand() {
+
+      let currentWidthNumber = Number(domElement.style.width.slice(0, -2));
+
+      if (currentWidthNumber >= radius) {
+        resolve(domElement);
+        return
+      }
+      domElement.style.width = currentWidthNumber + pxStep + 'px';
+      domElement.style.height = currentWidthNumber + pxStep + 'px';
+      domElement.style.borderRadius = currentWidthNumber + pxStep + 'px';
+      setTimeout(expand, time)
+    }, time)
 
   });
 }
@@ -30,10 +36,10 @@ function expandCirclePromise(domElement, time) {
  * @param {function} onCompleted - callback which will execute after the circle is fully shown
  */
 
- // ----------------------------------- НОВЫЙ ЧЕРЕЗ setTimeout --------------------------------------------
+// ----------------------------------- НОВЫЙ ЧЕРЕЗ setTimeout --------------------------------------------
 
-function expandCircle(domElement, time, onCompleted){
-  setTimeout(function expand(){
+function expandCircle(domElement, time, onCompleted) {
+  setTimeout(function expand() {
     let currentWidthNumber = Number(domElement.style.width.slice(0, -2));
     if (currentWidthNumber >= 200) {
       onCompleted(domElement);
