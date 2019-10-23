@@ -1,6 +1,7 @@
 createCircle();
-// expandCircle(document.getElementById('circle'), 100, addText);
-expandCirclePromise(document.getElementById('circle'), 5).then(addText); // time указывается в секундах 
+
+expandCirclePromise(document.getElementById('circle'), 5).then(addText); 
+// time указывается в секундах, за сколько круг должен быть нарисован
 
 
 // ----------------------------------- НОВЫЙ ЧЕРЕЗ Promise --------------------------------------------
